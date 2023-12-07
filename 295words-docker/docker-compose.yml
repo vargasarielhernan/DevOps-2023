@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app-java:
+    container_name: java-word
+    image: java-v1.0.0
+    build: ./api
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_URL: jdbc:postgresql://db:5432/postgres
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+    depends_on:
+      - db
+  java-db:
+    container_name: db
+    imagen: postgres:15-alpine
+    build: ./java-db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB: postgres
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+    volumes:
+      - db: /var/lib/postgres/data
+
+volumes:
+  db:
