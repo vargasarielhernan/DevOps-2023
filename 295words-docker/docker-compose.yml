@@ -24,6 +24,11 @@ services:
       - POSTGRES_PASSWORD: postgres
     volumes:
       - db: /var/lib/postgres/data
-
+  web-go:
+    container_name: web
+    image: golang:alpine
+    build: ./go/src
+    ports: 
+     - 8081:8080
 volumes:
   db:
