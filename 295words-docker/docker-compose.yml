@@ -2,7 +2,7 @@ version: '3.8'
 services:
   app-java:
     container_name: java-word
-    image: java-v1.0.0
+    image: amazoncorretto:17
     build: ./api
     ports:
       - 8080:8080
@@ -14,7 +14,7 @@ services:
       - java-db
   java-db:
     container_name: db
-    build: ./java-db
+    build: ./db
     ports:
       - 5432:5432
     environment:
@@ -26,8 +26,8 @@ services:
   web-go:
     container_name: web
     image: golang:alpine
-    build: ./go/src
+    build: ./web
     ports: 
-     - 8080:80
+     - 8081:80
 volumes:
   db: {}
