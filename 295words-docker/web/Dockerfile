@@ -1,4 +1,5 @@
-FROM golang:1.19.3-alpine3.17 AS builder
+#FROM golang:1.19.3-alpine3.17 AS builder
+FROM golang:alpine AS builder
 RUN apk add --no-cache git
 #FROM golang:1.17-alpine AS builder
 # ENV GO111MODULE=ON \
@@ -7,7 +8,7 @@ RUN apk add --no-cache git
 #     GOARCH=amd64
 WORKDIR /web
 COPY . /web
-RUN chmod +x dispatcher.go
+#RUN chmod +x dispatcher.go
 RUN go mod init web
 RUN go mod download
 COPY . .
@@ -17,9 +18,10 @@ RUN go build -o web -v .
 #CMD [ "./web-go" ]
 #ENTRYPOINT [ "./web-go" ]
 
-FROM alpine:3.17
+FROM alpine
+#FROM alpine:3.17
 RUN apk update
-RUN apk --no-cache add ca-certificates
+#RUN apk --no-cache add ca-certificates
 #FROM scratch
 WORKDIR /web
 COPY --from=builder /web .
