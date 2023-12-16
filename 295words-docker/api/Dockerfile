@@ -26,4 +26,4 @@ RUN mvn -e -B package
 FROM openjdk:18
 COPY --from=builder target/*.jar words.jar  
 EXPOSE 8080
-CMD ["java", "-jar", "words.jar"]
+CMD ["java", "-jar", "Main"]
