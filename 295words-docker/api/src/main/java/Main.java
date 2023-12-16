@@ -8,8 +8,10 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.sql.*;
 import java.util.NoSuchElementException;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class Main {
+    private static final Dotenv dotenv = Dotenv.load();
     public static void main(String[] args) throws Exception {
         Class.forName("org.postgresql.Driver");
 
@@ -21,7 +23,7 @@ public class Main {
     }
 
     private static String randomWord(String table) {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://db:5432/postgres", "postgres", "postgres")) {
+        try (Connection connection = DriverManager.getConnection(dotenv.get("POSTGRES_URL"), dotenv.get("POSTGRES_USER"), dotenv.get("POSTGRES_PASSWORD"))) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet set = statement.executeQuery("SELECT word FROM " + table + " ORDER BY random() LIMIT 1")) {
                     while (set.next()) {
