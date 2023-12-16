@@ -1,5 +1,5 @@
-#FROM golang:1.19.3-alpine3.17 AS builder
-FROM golang:alpine AS builder
+FROM golang:alpine3.17 AS builder
+#FROM golang:alpine AS builder
 RUN apk add --no-cache git
 #FROM golang:1.17-alpine AS builder
 # ENV GO111MODULE=ON \
@@ -18,8 +18,8 @@ RUN go build -o web -v .
 #CMD [ "./web-go" ]
 #ENTRYPOINT [ "./web-go" ]
 
-FROM alpine
-#FROM alpine:3.17
+#FROM alpine
+FROM alpine:3.17
 RUN apk update
 #RUN apk --no-cache add ca-certificates
 #FROM scratch

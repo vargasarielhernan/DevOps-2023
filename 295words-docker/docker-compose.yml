@@ -2,7 +2,6 @@ version: '3.8'
 services:
   app-java:
     container_name: java-word
-    image: amazoncorretto:17
     build: ./api
     ports:
       - 8080:8080
@@ -12,6 +11,8 @@ services:
       - POSTGRES_PASSWORD= postgres
     depends_on:
       - java-db
+    networks:
+      - appword
   java-db:
     container_name: db
     build: ./db
@@ -23,11 +24,18 @@ services:
       - POSTGRES_PASSWORD= postgres
     volumes:
       - db:/var/lib/postgres/data
+    networks:
+      - appword
   web-go:
     container_name: web
-    image: golang:alpine
     build: ./web
     ports: 
      - 8081:80
+    depends_on:
+      - app-java
+    networks:
+      - appword
 volumes:
   db: {}
+networks:
+  appword:
