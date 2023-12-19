@@ -4,13 +4,13 @@ services:
         image: mariadb
         ports: 
             - 3306:3306
-        # command: --default-authentication-plugin=mysql_native_password
+        #command: --default-authentication-plugin=mysql_native_password
         # restart: always
         environment:
-            MYSQL_DATABASE: "devopstravel"
-            MYSQL_USER: "codeuser"
-            MYSQL_PASSWORD: "test"
-            MYSQL_ROOT_PASSWORD: "test"
+            MYSQL_DATABASE: devopstravel
+            MYSQL_USER: root
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
         volumes:
             - ./database:/docker-entrypoint-initdb.d
             - persistent:/var/lib/mysql
