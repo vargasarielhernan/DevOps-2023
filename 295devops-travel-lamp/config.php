@@ -1,7 +1,7 @@
 <?php
 $dbHost     = 'db'; 
-$dbUsername = 'root'; 
-$dbPassword = 'test'; 
+$dbUsername = 'codeuser'; 
+$dbPassword = 'codepass'; 
 $dbName     = 'devopstravel'; 
 $conn = new mysqli($dbHost,$dbUsername,$dbPassword,$dbName); 
 if ($conn->connect_error) { 
