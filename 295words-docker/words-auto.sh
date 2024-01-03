@@ -68,6 +68,8 @@ fi
 echo "ingresando a carpeta contenedora de docker-compose"
 cd 295words-docker
 chmod +x docker-compose-smooth-Operator.yml
-docker-compose-smooth-Operator.yml up --build
+echo "Ingreso carpeta de 295words"
+ls
+docker-compose -f docker-compose-smooth-Operator.yml up --build
 
 
